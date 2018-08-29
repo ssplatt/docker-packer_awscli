@@ -8,6 +8,7 @@ RUN apk add --update --no-cache \
     build-base \
     git \
     jq \
+    openssh \
   && pip install awscli
 
 WORKDIR /tmp
