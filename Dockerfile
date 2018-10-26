@@ -9,7 +9,8 @@ RUN apk add --update --no-cache \
     git \
     jq \
     openssh \
+    bash \
   && pip install awscli
 
 WORKDIR /tmp
-ENTRYPOINT ["/bin/ash"]
+ENTRYPOINT ["/bin/bash"]
