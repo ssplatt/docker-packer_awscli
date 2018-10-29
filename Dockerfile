@@ -11,6 +11,7 @@ RUN apk add --update --no-cache \
     openssh \
     bash \
     libffi-dev \
+    openssl-dev \
   && pip install --upgrade pip \
   && pip install \
     awscli \
