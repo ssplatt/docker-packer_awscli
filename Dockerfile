@@ -10,7 +10,8 @@ RUN apk add --update --no-cache \
     jq \
     openssh \
     bash \
-  && pip install awscli
+  && pip install awscli \
+  && pip install boto3
 
 WORKDIR /tmp
 ENTRYPOINT ["/bin/bash"]
