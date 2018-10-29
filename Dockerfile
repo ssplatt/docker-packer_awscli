@@ -10,6 +10,7 @@ RUN apk add --update --no-cache \
     jq \
     openssh \
     bash \
+    libffi \
   && pip install --upgrade pip \
   && pip install \
     awscli \
