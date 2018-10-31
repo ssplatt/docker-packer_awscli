@@ -17,5 +17,7 @@ RUN apk add --update --no-cache \
     awscli \
     boto3
 
-WORKDIR /tmp
+RUN addgroup -S packer && adduser -S packer -G packer
+USER packer
+WORKDIR /home/packer
 ENTRYPOINT ["/bin/bash"]
