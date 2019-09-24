@@ -1,4 +1,4 @@
-FROM hashicorp/packer
+FROM hashicorp/packer:1.4.3
 MAINTAINER "Brett Taylor <github.com/ssplatt>"
 
 RUN apk add --update --no-cache \
