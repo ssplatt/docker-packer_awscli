@@ -10,6 +10,7 @@ RUN apk add --update --no-cache \
     jq \
     openssh \
     bash \
+    curl \
     libffi-dev \
     openssl-dev \
     cabal \
