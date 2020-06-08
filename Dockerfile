@@ -19,7 +19,7 @@ RUN apk add --update --no-cache \
 RUN git clone https://github.com/koalaman/shellcheck.git ./build/
 RUN cd ./build && cabal update && cabal install
 
-FROM hashicorp/packer:1.4.3 AS runner
+FROM hashicorp/packer:1.5.6 AS runner
 MAINTAINER "Brett Taylor <github.com/ssplatt>"
 COPY --from=builder /root/.cabal/bin/shellcheck /usr/local/bin
 COPY --from=builder /install /usr/local
