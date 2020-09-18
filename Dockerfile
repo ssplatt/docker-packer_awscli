@@ -1,32 +1,20 @@
 FROM alpine AS builder
 RUN apk add --update --no-cache \
-    python \
-    python-dev \
-    py-pip \
+    python3 \
+    python3-dev \
+    py3-pip \
     build-base \
-    git \
-    jq \
-    openssh \
-    bash \
-    curl \
-    libffi-dev \
-    openssl-dev \
-    cabal \
-    ghc \
-  && pip install --prefix=/install \
+  && pip3 install --prefix=/install \
     awscli \
     boto3
-RUN git clone https://github.com/koalaman/shellcheck.git ./build/
-RUN cd ./build && cabal update && cabal install
 
-FROM hashicorp/packer:1.5.6 AS runner
-MAINTAINER "Brett Taylor <github.com/ssplatt>"
-COPY --from=builder /root/.cabal/bin/shellcheck /usr/local/bin
+FROM hashicorp/packer:latest AS runner
+LABEL maintainer="Brett Taylor <github.com/ssplatt>"
 COPY --from=builder /install /usr/local
 RUN apk add --update --no-cache \
-    python \
-    python-dev \
-    py-pip \
+    python3 \
+    python3-dev \
+    py3-pip \
     build-base \
     libffi-dev \
     openssl-dev \
@@ -34,6 +22,6 @@ RUN apk add --update --no-cache \
     jq \
     openssh \
     bash \
-    curl
+    curl 
 
 ENTRYPOINT ["/bin/bash"]
