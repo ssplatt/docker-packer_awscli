@@ -20,7 +20,7 @@ workflows:
   default:
     jobs:
       - docker/hadolint:
-          ignore-rules: DL3004
+          ignore-rules: DL3004,DL3006,DL3007,DL3013,DL3018
       - docker/publish:
           image: ssplatt/packer_awscli
           update-description: true

@@ -9,7 +9,7 @@ RUN apk add --update --no-cache \
     boto3
 
 FROM hashicorp/packer:latest AS runner
-MAINTAINER "Brett Taylor <github.com/ssplatt>"
+LABEL maintainer="Brett Taylor <github.com/ssplatt>"
 COPY --from=builder /install /usr/local
 RUN apk add --update --no-cache \
     python3 \
