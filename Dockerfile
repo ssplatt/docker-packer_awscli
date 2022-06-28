@@ -1,21 +1,20 @@
-FROM hashicorp/packer:1.4.3
-MAINTAINER "Brett Taylor <github.com/ssplatt>"
+FROM cimg/python:3.7 AS base
 
-RUN apk add --update --no-cache \
-    python \
-    python-dev \
-    py-pip \
-    build-base \
-    git \
-    jq \
-    openssh \
-    bash \
-    libffi-dev \
-    openssl-dev \
-  && pip install --upgrade pip \
-  && pip install \
-    awscli \
-    boto3
+FROM base AS builder
+ENV PACKER_VERSION "1.6.4"
 
 WORKDIR /tmp
+RUN curl "https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip" -o "packer.zip" \
+    && unzip packer.zip \
+    && sudo cp packer /usr/local/bin \
+    && packer --version
+
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" \
+    && unzip awscliv2.zip \
+    && sudo ./aws/install \
+    && aws --version
+
+FROM base AS runner
+LABEL maintainer="Brett Taylor <github.com/ssplatt>"
+COPY --from=builder /usr/local /usr/local
 ENTRYPOINT ["/bin/bash"]
