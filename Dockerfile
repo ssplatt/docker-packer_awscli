@@ -1,7 +1,7 @@
 FROM cimg/python:3.7 AS base
 
 FROM base AS builder
-ENV PACKER_VERSION "1.6.4"
+ENV PACKER_VERSION "1.8.3"
 
 WORKDIR /tmp
 RUN curl "https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip" -o "packer.zip" \
